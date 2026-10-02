@@ -1,7 +1,21 @@
-torch>=2.4
+# Python 3.11 or 3.12.  Install:  pip install -r requirements.txt
+
+# Models and generation
+torch>=2.4             # pip wheel bundles CUDA; check torch.cuda.is_available() on a GPU node
 transformers>=4.46
-accelerate
-datasets>=3.0
+accelerate             # needed for device_map="cuda" when loading models
+
+# Data and outputs
+datasets>=3.0          # FLORES+ (gated: HF_TOKEN)
+pyarrow                # Parquet output from generate.py
+
+# Fertility (fertility.py): word segmentation for Chinese and Japanese
+jieba
+fugashi
+unidic-lite            # dictionary for fugashi/MeCab
+
+# Contamination check (contamination.py)
+sacrebleu              # chrF
+
+# Tests
 pytest
-sacrebleu
-pyarrow

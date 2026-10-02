@@ -6,13 +6,12 @@
 # Single pair:                sbatch --array=<idx> slurm/generate.sbatch   (idx = model_idx*10 + lang_idx)
 #SBATCH --job-name=wm-gen
 #SBATCH --array=0-59%12
-#SBATCH --gres=gpu:1
-#SBATCH --cpus-per-task=8
 #SBATCH --mem=64G
 #SBATCH --time=06:00:00
 #SBATCH --output=logs/%x_%A_%a.out
-#SBATCH --partition=CHANGE_ME
-#SBATCH --account=CHANGE_ME
+#SBATCH --gres=gpu:1
+#SBATCH --cpus-per-task=4
+#SBATCH --account=torch_pr_1073_tandon_priority
 
 set -euo pipefail
 MODELS=(qwen-base qwen-instruct llama-base llama-instruct mistral-base mistral-instruct)
