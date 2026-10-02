@@ -19,7 +19,8 @@ LANGS=(en es ru zh ja ar hi tr sw yo)
 MODEL=${MODELS[$((SLURM_ARRAY_TASK_ID / 10))]}
 LANG_=${LANGS[$((SLURM_ARRAY_TASK_ID % 10))]}
 
-source /scratch/ss20348/envs/watermarking/bin/activate
+#source /scratch/ss20348/envs/watermarking/bin/activate #for venv
+conda activate /scratch/ss20348/envs/watermarking #for conda
 # HF_TOKEN and HF_HOME come from .env (see .env.example); HF_HOME falls back to scratch.
 if [ -f .env ]; then set -a; source .env; set +a; fi
 : "${HF_TOKEN:?HF_TOKEN not set (put it in .env)}"
