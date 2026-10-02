@@ -1,0 +1,7 @@
+torch>=2.4
+transformers>=4.46
+accelerate
+datasets>=3.0
+pytest
+sacrebleu
+pyarrow

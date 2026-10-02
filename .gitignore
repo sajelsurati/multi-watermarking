@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Secrets (e.g. HF_TOKEN)
+.env
+
+# Experiment outputs (large; regenerate on the cluster)
+results/
+*.tmp
+
+# Slurm logs (keep the folder: Slurm won't create it)
+logs/*
+!logs/.gitkeep
+*.out
+*.err
+
+# Contamination control text (scraped; possibly copyrighted)
+data/control/
+
+# Local caches
+hf_cache/
+.cache/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
