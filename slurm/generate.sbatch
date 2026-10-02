@@ -20,10 +20,12 @@ MODEL=${MODELS[$((SLURM_ARRAY_TASK_ID / 10))]}
 LANG_=${LANGS[$((SLURM_ARRAY_TASK_ID % 10))]}
 
 #source /scratch/ss20348/envs/watermarking/bin/activate #for venv
-conda activate /scratch/ss20348/envs/watermarking #for conda
+#conda activate /scratch/ss20348/envs/watermarking #for conda
 # HF_TOKEN and HF_HOME come from .env (see .env.example); HF_HOME falls back to scratch.
 if [ -f .env ]; then set -a; source .env; set +a; fi
 : "${HF_TOKEN:?HF_TOKEN not set (put it in .env)}"
 export HF_HOME=${HF_HOME:-$SCRATCH/hf_cache}
 
-python generate.py --model "$MODEL" --lang "$LANG_"
+PY=/scratch/ss20348/envs/watermarking/bin/python
+"$PY" -c "import torch; assert torch.cuda.is_available(), 'no GPU visible'"
+"$PY" generate.py --model "$MODEL" --lang "$LANG_"
